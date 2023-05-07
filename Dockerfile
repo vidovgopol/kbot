@@ -2,8 +2,8 @@ FROM golang:1.19 as builder
 
 WORKDIR /go/src/app
 COPY . .
-RUN go get
-RUN make build
+ARG build_arc
+RUN make $build_arc
 
 FROM scratch
 WORKDIR /
