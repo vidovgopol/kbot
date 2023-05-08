@@ -33,7 +33,10 @@ mac: format get
 windows: format get
 	CGO_ENABLED=0 GOOS=${TARGETOS_WINDOWS} GOARCH=${TARGETARC_WINDOWS} ${BUILD}${VERSION}
 
-# Build Docker container for different system architectures. Choose one to fulfil your requirements.
+# Build Docker container for different system architectures. Choose one to fulfil your requirements. Linux is default image.
+
+image:
+	docker build -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARC_LINUX} --build-arg build_arc=linux .
 
 image_linux:
 	docker build -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARC_LINUX} --build-arg build_arc=linux .
