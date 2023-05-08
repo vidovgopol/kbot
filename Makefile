@@ -5,9 +5,10 @@ BUILD=go build -v -o kbot -ldflags "-X="github.com/vidovgopol/kbot/cmd.appVersio
 TARGETOS_LINUX=linux
 TARGETOS_MAC=darwin
 TARGETOS_WINDOWS=windows
+TARGETARC=amd64
 TARGETARC_MAC=arm64
 TARGETARC_LINUX=amd64
-TARGETARC_WINDOWS=x64
+TARGETARC_WINDOWS=amd64
 
 format:
 	gofmt -s -w ./
@@ -36,24 +37,23 @@ windows: format get
 
 image_linux:
 	docker build -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARC_LINUX} --build-arg build_arc=linux .
-	latest_image=${REGISTRY}/${APP}:${VERSION}-${TARGETARC_LINUX}
-	export latest_image
 
 image_mac:
 	docker build -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARC_MAC} --build-arg build_arc=mac .
-	export latest_image=${REGISTRY}/${APP}:${VERSION}-${TARGETARC_MAC}
 
 image_windows:
 	docker build -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARC_WINDOWS} --build-arg build_arc=windows .
-	export latest_image=${REGISTRY}/${APP}:${VERSION}-${TARGETARC_WINDOWS}
 
 # Push container to repository, for change provider you have to edit make file variables.
 
 push:
 	docker push ${REGISTRY}/${APP}:${VERSION}-${TARGETARC}
 
-# Clean binaries and latest docker image. 
+# Clean binaries and latest docker image. For image deletion you should pass ${TARGETARC} to make clean. Example: 
+#"make clean TARGETARC=amd64" for linux,
+#"make clean TARGETARC=arm64" for mac,
+#"make clean TARGETARC=arm64" for windows.
 
 clean:
 	rm -rf kbot
-	docker rmi -f ${REGISTRY}/${APP}:${VERSION}-${TARGETARC_MAC}
+	docker rmi -f ${REGISTRY}/${APP}:${VERSION}-${TARGETARC}
