@@ -46,4 +46,8 @@ For this task I strongly recomend K3d solution. Because it provides much more in
 
 ## Demo setup
 
+[asciinema.org](https://asciinema.org).
+
+[![demo](https://asciinema.org/a/YIko5Oz7pkCuw3xOsXEigm2rp.svg)](https://asciinema.org/a/YIko5Oz7pkCuw3xOsXEigm2rp?autoplay=1)
+
 https://asciinema.org/a/YIko5Oz7pkCuw3xOsXEigm2rp
