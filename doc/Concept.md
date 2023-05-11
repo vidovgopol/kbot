@@ -40,3 +40,8 @@ Disadvantages of K3d:
 
 In summary, the choice of service depends on the specific needs and requirements of your project. Minikube is suitable for simple deployments, Kind offers more flexibility for multi-node clusters, and K3d is useful for quick and easy testing of more complex scenarios.
 
+## Conclusion
+
+For this task I strongly recomend K3d solution. Because it provides much more instruments and can be started on local PC.
+
+## Demo setup
