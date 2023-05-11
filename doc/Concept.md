@@ -45,3 +45,5 @@ In summary, the choice of service depends on the specific needs and requirements
 For this task I strongly recomend K3d solution. Because it provides much more instruments than other two and still can be started on local PC.
 
 ## Demo setup
+
+https://asciinema.org/a/YIko5Oz7pkCuw3xOsXEigm2rp
