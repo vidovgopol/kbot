@@ -42,6 +42,6 @@ In summary, the choice of service depends on the specific needs and requirements
 
 ## Conclusion
 
-For this task I strongly recomend K3d solution. Because it provides much more instruments and can be started on local PC.
+For this task I strongly recomend K3d solution. Because it provides much more instruments than othet two and still can be started on local PC.
 
 ## Demo setup
