@@ -4,7 +4,6 @@ VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HE
 TARGETOS=linux #linux darwin windows
 TARGETARCH=arm64 #amd64 arm64
 CGO_ENABLED=0
-CGO_ENABLED=0
 
 linux:
 	${MAKE} build TARGETOS=linux TARGETARCH=${TARGETARCH} 
