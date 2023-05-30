@@ -3,11 +3,10 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
 image:
   repository: vidovgopol
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0.0-d1d210f"
+  tag: "v1.0.3-da6746b"
   arc: amd64
 secret:
   name: kbot
