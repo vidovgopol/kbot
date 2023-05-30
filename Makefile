@@ -34,7 +34,7 @@ image:
 	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH} --build-arg CGO_ENABLED=${CGO_ENABLED} --build-arg TARGETARCH=${TARGETARCH} --build-arg TARGETOS=${TARGETOS}
 
 push:
-	docker push ${REGISTRY}/${APP}:${VERSION}-${TARGETARC}
+	docker push ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 
 # Clean binaries and latest docker image. For image deletion you should pass ${TARGETARC} to make clean. Example: 
 #"make clean TARGETARC=amd64" for linux,
