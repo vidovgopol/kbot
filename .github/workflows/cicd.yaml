@@ -15,10 +15,10 @@ jobs:
 
       - name: Run test
         run: make test
-      - name: Docker Hub login
+      - name: GitHub login
         uses: docker/login-action@v2
         with:
-            registry: ${{ env.REGISTRY }}
+            registry: ghcr.io
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
