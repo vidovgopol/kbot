@@ -10,6 +10,6 @@ image:
   os: linux
   arc: amd64
 secret:
-  name: kbot
-  tokenKey: token
-  tokenName: TELE_TOKEN
+  name: "kbot"
+  env: "TELE_TOKEN"
+  key: "token"
