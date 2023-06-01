@@ -1,7 +1,9 @@
 APP=$(shell basename $(shell git remote get-url origin))
-REGISTRY=ghcr.io/vidovgopol
+REGISTRY=ghcr.io
+REPOSITORY=vidovgopol
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
-TARGETOS=linux #linux darwin windows
+TARGETOS=linux
+#linux darwin windows
 TARGETARCH=amd64 #amd64 arm64
 CGO_ENABLED=0
 
@@ -31,10 +33,10 @@ get:
 	CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -o kbot -ldflags "-X="github.com/den-vasyliev/kbot/cmd.appVersion=${VERSION}
 
 image:
-	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH} --build-arg CGO_ENABLED=${CGO_ENABLED} --build-arg TARGETARCH=${TARGETARCH} --build-arg TARGETOS=${TARGETOS}
+	docker build . -t ${REGISTRY}/${REPOSITORY}/${APP}:${VERSION}-${TARGETOS}-${TARGETARCH} --build-arg CGO_ENABLED=${CGO_ENABLED} --build-arg TARGETARCH=${TARGETARCH} --build-arg TARGETOS=${TARGETOS}
 
 push:
-	docker push ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
+	docker push ${REGISTRY}/${REPOSITORY}/${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
 # Clean binaries and latest docker image. For image deletion you should pass ${TARGETARC} to make clean. Example: 
 #"make clean TARGETARC=amd64" for linux,
@@ -43,4 +45,4 @@ push:
 
 clean:
 	rm -rf kbot
-	docker rmi -f ${REGISTRY}/${APP}:${VERSION}-${TARGETARC}
+	docker rmi -f ${REGISTRY}/${REPOSITORY}/${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
