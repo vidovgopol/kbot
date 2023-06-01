@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/vidovgopol
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0.3-cda1fc2"
+  tag: "v1.0.3-4a80ac8"
   os: linux
   arc: amd64
 secret:
