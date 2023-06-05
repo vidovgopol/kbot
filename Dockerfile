@@ -2,7 +2,6 @@ FROM quay.io/projectquay/golang:1.20 as builder
 
 WORKDIR /go/src/app
 COPY . .
-#ARG build_arc
 #RUN make $build_arc
 ARG TARGETOS
 ARG CGO_ENABLED
