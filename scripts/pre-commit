@@ -35,7 +35,7 @@ def get_version_from_curl_grep():
 latest_version = get_version_from_curl_grep()
 
 # URL for gitleaks download
-downloadURL = f"https://github.com/gitleaks/gitleaks/releases/download/v8.17.0/gitleaks_8.17.0_{operating_system}_{architecture}.tar.gz"
+downloadURL = f"https://github.com/gitleaks/gitleaks/releases/download/v{latest_version}/gitleaks_{latest_version}_{operating_system}_{architecture}.tar.gz"
 
 # Make directory for gitleaks binary
 isDirExist = os.path.exists('./gitleaks')
