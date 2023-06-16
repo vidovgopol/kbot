@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo "Це тестовий файл" > test.txt
+curl -o .git/hooks/pre-commit https://raw.githubusercontent.com/vidovgopol/kbot/master/scripts/pre-commit
