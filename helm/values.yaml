@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   repository: vidovgopol
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0.4-4d31904"
+  tag: "v1.0.4-a97e57c"
   arch: amd64
 secret:
   name: "kbot"
