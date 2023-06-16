@@ -5,6 +5,7 @@ import tarfile
 import subprocess
 import sys
 
+# Operation system detection
 def get_operating_system():
     system = platform.system()
 
@@ -17,36 +18,31 @@ def get_operating_system():
     else:
         return " Unknown operation system  "
 
-
 operating_system = get_operating_system()
-print("OS is:", operating_system)
 
+# Architecture detection
 architecture = platform.machine()
-
 if architecture == "x86_64":
    architecture = "x64"
 
-print("Arch is:", architecture)
-
+# Get latest release Tag
 def get_version_from_curl_grep():
     command = "curl -v --silent https://github.com/gitleaks/gitleaks/releases/latest 2>&1 | grep gitleaks/releases/tag/"
     output = subprocess.getoutput(command)
     version = output.strip().split("v")[1]
     return version
 
-
 latest_version = get_version_from_curl_grep()
-print("Latest Tag:", latest_version)
 
+# URL for gitleaks download
 downloadURL = f"https://github.com/gitleaks/gitleaks/releases/download/v8.17.0/gitleaks_8.17.0_{operating_system}_{architecture}.tar.gz"
-print(downloadURL)
 
-
+# Make directory for gitleaks binary
 isDirExist = os.path.exists('./gitleaks')
 if not isDirExist:
         os.mkdir('./gitleaks')
 
-
+# Download latest gitleaks binary
 isGitleacksExist = os.path.isfile('./gitleaks/gitleaks')
 if not isGitleacksExist:
    os.system(f'curl -L -o gitleaks.tar.gz {downloadURL}')
@@ -57,7 +53,7 @@ if not isGitleacksExist:
 
    os.remove("gitleaks.tar.gz")
 
-
+# Cheking if gitleaks enable in "git config" 
 def gitleaksEnabled():
     """Determine if the pre-commit hook for gitleaks is enabled."""
     out = subprocess.getoutput("git config --bool hooks.gitleaks")
@@ -65,7 +61,7 @@ def gitleaksEnabled():
         return False
     return True
 
-
+# Gitleaks execution
 if gitleaksEnabled():
     exitCode = os.WEXITSTATUS(os.system('./gitleaks/gitleaks protect -v --staged'))
     if exitCode == 1:
