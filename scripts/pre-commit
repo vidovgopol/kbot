@@ -1,0 +1,80 @@
+#!/usr/bin/python3
+import os
+import platform
+import tarfile
+import subprocess
+import sys
+
+def get_operating_system():
+    system = platform.system()
+
+    if system == "Windows":
+        return "windows"
+    elif system == "Darwin":
+        return "darwin"
+    elif system == "Linux":
+        return "linux"
+    else:
+        return " Unknown operation system  "
+
+
+operating_system = get_operating_system()
+print("OS is:", operating_system)
+
+architecture = platform.machine()
+
+if architecture == "x86_64":
+   architecture = "x64"
+
+print("Arch is:", architecture)
+
+def get_version_from_curl_grep():
+    command = "curl -v --silent https://github.com/gitleaks/gitleaks/releases/latest 2>&1 | grep gitleaks/releases/tag/"
+    output = subprocess.getoutput(command)
+    version = output.strip().split("v")[1]
+    return version
+
+
+latest_version = get_version_from_curl_grep()
+print("Latest Tag:", latest_version)
+
+downloadURL = f"https://github.com/gitleaks/gitleaks/releases/download/v8.17.0/gitleaks_8.17.0_{operating_system}_{architecture}.tar.gz"
+print(downloadURL)
+
+
+isDirExist = os.path.exists('./gitleaks')
+if not isDirExist:
+        os.mkdir('./gitleaks')
+
+
+isGitleacksExist = os.path.isfile('./gitleaks/gitleaks')
+if not isGitleacksExist:
+   os.system(f'curl -L -o gitleaks.tar.gz {downloadURL}')
+   archive_file = "gitleaks.tar.gz"
+   output_dir = "./gitleaks"
+   with tarfile.open(archive_file) as tar:
+      tar.extractall(output_dir)
+
+   os.remove("gitleaks.tar.gz")
+
+
+def gitleaksEnabled():
+    """Determine if the pre-commit hook for gitleaks is enabled."""
+    out = subprocess.getoutput("git config --bool hooks.gitleaks")
+    if out == "false":
+        return False
+    return True
+
+
+if gitleaksEnabled():
+    exitCode = os.WEXITSTATUS(os.system('./gitleaks/gitleaks protect -v --staged'))
+    if exitCode == 1:
+        print('''Warning: gitleaks has detected sensitive information in your changes.
+To disable the gitleaks precommit hook run the following command:
+
+    git config hooks.gitleaks false
+''')
+        sys.exit(1)
+else:
+    print('gitleaks precommit disabled\
+     (enable with `git config hooks.gitleaks true`)')
