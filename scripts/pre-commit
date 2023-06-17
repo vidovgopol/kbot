@@ -53,7 +53,7 @@ if not isGitleacksExist:
    os.remove("gitleaks.tar.gz")
 
 # Add gitleaks to .gitignore
-os.system('echo "gitleaks" >> .gitignore')
+os.system('echo "gitleaks" >> ./.gitignore')
 
 # Cheking if gitleaks enable in "git config" 
 def gitleaksEnabled():
