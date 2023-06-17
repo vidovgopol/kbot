@@ -2,6 +2,7 @@
 **Supported operation systems**
 - linux
 - MacOs
+
 *Windows, will be supported in upcoming update
 ------------
 **Requirements**
