@@ -52,16 +52,14 @@ if not isGitleacksExist:
       tar.extractall(output_dir)
    os.remove("gitleaks.tar.gz")
 
-# Add gitleaks to .gitignore
-os.system('echo "gitleaks" >> ./.gitignore')
 
 # Cheking if gitleaks enable in "git config" 
 def gitleaksEnabled():
     """Determine if the pre-commit hook for gitleaks is enabled."""
-    out = subprocess.getoutput("git config --bool hooks.gitleaks")
-    if out == "false":
-        return False
-    return True
+    out = subprocess.getoutput("git config hooks.gitleaks")
+    if out == "enable":
+        return True
+    return False
 
 # Gitleaks execution
 if gitleaksEnabled():
