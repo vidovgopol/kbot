@@ -1,5 +1,11 @@
 # Gitleaks script
 
+**Supported operation systems**
+- Linux
+- MacOS
+
+*Windows, will be supported in upcoming update
+
 ------------
 **Requirements**
 
