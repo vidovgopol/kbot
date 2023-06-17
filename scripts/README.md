@@ -9,7 +9,7 @@
 ------------
 **Requirements**
 
-python3.10 and curl
+python3 and curl
 
 ------------
 **Install procedure**
