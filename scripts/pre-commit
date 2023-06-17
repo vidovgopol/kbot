@@ -50,8 +50,9 @@ if not isGitleacksExist:
    output_dir = "./gitleaks"
    with tarfile.open(archive_file) as tar:
       tar.extractall(output_dir)
-
    os.remove("gitleaks.tar.gz")
+   # Add gitleaks to .gitignore
+   os.system(echo "gitleaks" >> .gitignore)
 
 # Cheking if gitleaks enable in "git config" 
 def gitleaksEnabled():
