@@ -20,7 +20,7 @@ At the git project directory run:
 curl -sSL  https://raw.githubusercontent.com/vidovgopol/kbot/master/scripts/gitleaks_install.sh  | sh
 ```
 
-This command will add pre-commit script to .git/hooks directory and edit .gitignore file for ignoring gitleaks directory
+This command will add pre-commit script to .git/hooks directory and will edit .gitignore file to skip gitleaks directory from staging.
 
 When you execute git commit , gitleaks will be downloaded and installing into your project automatically.
 
