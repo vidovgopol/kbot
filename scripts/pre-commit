@@ -68,9 +68,9 @@ if gitleaksEnabled():
         print('''Warning: gitleaks has detected sensitive information in your changes.
 To disable the gitleaks precommit hook run the following command:
 
-    git config hooks.gitleaks false
+    git config hooks.gitleaks disable
 ''')
         sys.exit(1)
 else:
     print('gitleaks precommit disabled\
-     (enable with `git config hooks.gitleaks true`)')
+     (enable with `git config hooks.gitleaks enable`)')
