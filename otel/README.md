@@ -16,6 +16,8 @@ docker-compose up
 
 ## Grafana demo
 
+**This task was completed on junior level because of time restriction. Migration from docker-compose to Kubernetes will be done by my own later.
+
 Grafana start page
 ![grafana01](demo/grafana_demo01.jpg)
 
